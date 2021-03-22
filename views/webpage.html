@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Online Compiler</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Permanent+Marker&family=Russo+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="front-style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+<div class = "body-modification">
+  <div class="top">
+    <div class="row ">
+      <div class="col-lg-9 col-sm-9 boxy">
+        <span class="name1">
+          Online Compiler
+        </span>
+      </div>
+
+      <div class="col-lg-1 col-sm-1 boxy"><img class="top-pic" src="./Images/C.png" alt="C"></div>
+      <div class="col-lg-1 col-sm-1 boxy"><img class="top-pic" src="./Images/C++.png" alt="C++"></div>
+      <div class="col-lg-1 col-sm-1 boxy"><img class="top-pic" src="./Images/Java.png" alt="Java"></div>>
+
+    </div>
+  </div><br><br><br>
+
+  <div class="container">
+
+    <h2 class="main-text">Select Language :</h2><br>
+    <div class="form-group">
+      <select class="form-control" id="exampleSelect1">
+        <option>C</option>
+        <option>C++</option>
+        <option>Java</option>
+      </select>
+    </div><br>
+
+
+    <h2 class="main-text">Enter Code: </h2><br>
+    <form action="/" method="POST">
+    <div class="form-group">
+      <textarea id = "output1" class="form-control" id="exampleFormControlTextarea1" rows="7">--Enter Code Here--</textarea>
+    </div>
+    <button id="clear1" type="button" class="btn btn-primary" value="Clear1">Refresh</button><br><br>
+
+
+    <h2 class="main-text">Enter Input :</h2><br>
+    <textarea id = "output2" class="form-control" id="exampleFormControlTextarea1" rows="7">--Enter Input Here--</textarea><br>
+    <button type="button" class="btn btn-success">Submit Code</button>
+  </form>
+    <button id="clear2" type="button" class="btn btn-primary">Refresh</button><br><br>
+
+
+    <h2 class="main-text">Output :</h2><br>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" readonly>--Output--</textarea><br><br><br><br>
+
+
+  </div>
+<script src="front-js.js"></script>
+
+
+
+</div>
+
+<div class="bottom">
+
+</div>
+
+</div>
+</body>
+
+</html>
