@@ -3,7 +3,7 @@ const fs= require('fs');
 const compcpp=require('./compcpp');
 const compc=require('./compc');
 const compjava=require('./compjava');
-const bodyparser=require('body-parser');
+// const bodyparser=require('body-parser');
 //var input='';
 //var status='';
 //express app
@@ -11,12 +11,12 @@ const app=express();
 //ejs view engines
 app.set('view engine','ejs');
 //middleware and static files
-app.use(express.urlencoded({}));
+app.use(express.urlencoded({extended: true}));
 app.listen(process.env.PORT || 3000,
     () => console.log("Server is running..."));
 //webpage display and load
 app.use(express.static('views'));
-app.use(bodyparser.urlencoded({extended:true}));
+// app.use(bodyparser.urlencoded({extended:true}));
 app.get('/',(req,res)=>{
    res.redirect('/webpages');
 });
