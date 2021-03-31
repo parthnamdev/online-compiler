@@ -2,6 +2,16 @@
   background-color: lightblue;
 }
 
+a {
+  text-decoration: none;
+  color : #95B9C7;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
 .top {
   background-color: #151B54;
   position: relative;

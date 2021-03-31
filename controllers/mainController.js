@@ -94,6 +94,18 @@ const compile = (req, res) => {
 }
 
 
+const login = (req, res) => {
+    const alertMsg = "";
+    res.render('login', {alertMsg: alertMsg});
+}
+
+
+const signup = (req, res) => {
+    const alertMsg = "";
+    res.render('signup', {alertMsg: alertMsg});
+}
+
+
 module.exports = {
-    index, compile
+    index, compile, login, signup
 }
