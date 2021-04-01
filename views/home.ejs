@@ -41,8 +41,17 @@
       </div>
     </div>
   </div>
-
+  
   <div class="container mt-5">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Hello, <%= user %>!
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+        <li><a class="dropdown-item" href="/deleteUser">Delete account</a></li>
+      </ul>
+    </div>
     <form action="/" method="POST">
       <h2 class="main-text">Select Language :</h2>
       <div class="form-group mt-4">

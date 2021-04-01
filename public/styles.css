@@ -52,3 +52,8 @@ a:hover {
 .bottom-text{
   margin: auto;
 }
+
+.dropdown button {
+  float: right;
+  background-color: #343f56;
+}

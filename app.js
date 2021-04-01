@@ -1,12 +1,10 @@
-const express = require('express')
+require('dotenv').config();
+const express = require('express');
 const fs = require('fs');
-
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 
 const mainRouter = require('./routes/mainRouter');
-// const bodyparser=require('body-parser');
-//var input='';
-//var status='';
-
 
 //express app
 const app = express();
@@ -16,6 +14,21 @@ app.set('view engine','ejs');
 
 //middleware and static files
 app.use(express.urlencoded({extended: true}));
+app.use(cookieParser(process.env.SESSION_SECRET));
+
+// database
+// const uri = `${"mongodb+srv://"+process.env.ATLAS_USER+":"+process.env.ATLAS_PASSWORD+"@"+process.env.ATLAS_CLUSTER+".fzmhp.mongodb.net/"+process.env.ATLAS_DB_NAME+"?retryWrites=true&w=majority"}`;
+const uri = 'mongodb://localhost:27017/compilerDB';
+mongoose.connect(uri, { useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex: true, useFindAndModify: false });
+const db = mongoose.connection;
+
+db.on("error", (err) => {
+    console.log(err);
+});
+
+db.once("open", () => {
+    console.log("database connected");
+});
 
 //webpage display and load
 app.use('/',express.static(__dirname + '/public'));
