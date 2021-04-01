@@ -1,5 +1,8 @@
+body{
+  font-family: 'Satoshi', sans-serif;
+}
 .body-modification {
-  background-color: lightblue;
+  
 }
 
 a {
@@ -13,18 +16,20 @@ a:hover {
 }
 
 .top {
-  background-color: #151B54;
-  position: relative;
+  background-color: #343f56;
+  padding: 1rem 10%;
+}
+.container{
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
-.name1{
-  top : 30px;
-  left: 50px;
-  color : #95B9C7;
-  font-family: 'Russo One',serif;
-  font-size: 60px;
-  font-weight: bold;
-  position: relative;
+.heading{
+  font-size: 4rem;
+  font-weight: 500;
+}
+.heading a{
+  color: #fff;
 }
 
 .top-pic{
@@ -36,8 +41,6 @@ a:hover {
 }
 
 .main-text{
-  font-family: 'Russo One',serif;
-  font-weight: bold;
 
 }
 
