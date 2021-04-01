@@ -13,5 +13,7 @@ router.get('/deleteUser', authenticate, mainController.deleteUser);
 router.post('/', authenticate, mainController.compile);
 router.post('/signup', mainController.registerUser);
 router.post('/login', mainController.loginUser);
+router.post('/addFile', authenticate, mainController.addFile);
+router.post('/deleteFile', authenticate, mainController.deleteFile);
 
 module.exports = router;

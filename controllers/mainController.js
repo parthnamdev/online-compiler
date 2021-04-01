@@ -10,21 +10,39 @@ const User = require('../models/userModel');
 var str;
 var lang;
 var output;
+var files;
 
-const index = (req, res) => {
+const index = async (req, res) => {
     lang = 2;
     str='';
     output='default-output';
-    res.render('home', {precode:str, outputcode:output, lang: lang -1, user: req.user.username});
+    
+    await User.findOne({username: req.user.username}, (err, found) => {
+        if(!err && found) {
+
+            files = found.files;
+
+        }
+    })
+    res.render('home', {precode:str, outputcode:output, lang: lang -1, user: req.user.username, files: files, alertMsg: ''});
 }
 
 
-const compile = (req, res) => {
+const compile = async (req, res) => {
     
     str = req.body.code;
     inp = req.body.input;
     lang = req.body.selector;
-    
+
+    await User.findOne({username: req.user.username}, (err, found) => {
+        if(!err && found) {
+
+            files = found.files;
+
+            
+        }
+    })
+
     if(lang==1)
     {
         fs.writeFile('./code.c',str,(err) => {
@@ -43,7 +61,7 @@ const compile = (req, res) => {
             // console.log("Console output:");
             // console.log(output);
 
-            res.render('home',{precode:str, outputcode:output, lang: lang-1, user: req.user.username});
+            res.render('home',{precode:str, outputcode:output, lang: lang-1, user: req.user.username, files: files, alertMsg: ''});
             res.end();
 
         });
@@ -66,7 +84,7 @@ const compile = (req, res) => {
             // console.log("Console output:");
             // console.log(output);
 
-            res.render('home',{precode:str, outputcode:output, lang: lang-1, user: req.user.username});
+            res.render('home',{precode:str, outputcode:output, lang: lang-1, user: req.user.username, files: files, alertMsg: ''});
             res.end();
         });
     }
@@ -87,7 +105,7 @@ const compile = (req, res) => {
             // console.log("Console output:");
             //console.log(output);
 
-            res.render('home',{precode:str, outputcode:output, lang: lang-1, user: req.user.username});
+            res.render('home',{precode:str, outputcode:output, lang: lang-1, user: req.user.username, files: files, alertMsg: ''});
             res.end();
         });
     }
@@ -186,6 +204,65 @@ const deleteUser = (req, res) => {
     })
 }
 
+const deleteFile = (req, res) => {
+    str = '';
+    output = 'default-output';
+    lang = parseInt(req.body.lang) + 1;
+    let temp1;
+    let temp2;
+    User.findOne({username: req.user.username}, async (err, found) => {
+        if(!err && found) {
+            temp1 = found.files;
+            found.files = found.files.filter(item => item.filename !== req.body.filename);
+            temp2 = found.files;
+
+
+            found.save((errr) => {
+                if(!errr) {
+                    res.render('home', {precode:str, outputcode:output, lang: lang-1, user: req.user.username, files: temp2, alertMsg: 'file removed'});
+                } else {
+                    res.render('home', {precode:str, outputcode:output, lang: lang-1, user: req.user.username, files: temp1, alertMsg: 'error removing file'});
+                }
+            })
+            
+        } else {
+            res.redirect('/');
+        }
+    })
+}
+
+const addFile = (req, res) => {
+    let temp1;
+    let temp2;
+    str = '';
+    output = 'default-output';
+    lang = parseInt(req.body.lang) + 1;
+
+    User.findOne({username: req.user.username}, async (err, found) => {
+        if(!err && found) {
+            const fileTtoAdd = {
+                filename: req.body.filename,
+                code: req.body.code
+            }
+            temp1 = found.files;
+            found.files.push(fileTtoAdd);
+
+            temp2 = found.files;
+
+            found.save((errr) => {
+                if(!errr) {
+                    res.render('home', {precode:str, outputcode:output, lang: lang-1, user: req.user.username, files: temp2, alertMsg: 'file added'});
+                } else {
+                    res.render('home', {precode:str, outputcode:output, lang: lang-1, user: req.user.username, files: temp1, alertMsg: 'error adding file'});
+                }
+            })
+            
+        } else {
+            res.redirect('/');
+        }
+    })
+}
+
 module.exports = {
-    index, compile, login, signup, registerUser, loginUser, logout, deleteUser
+    index, compile, login, signup, registerUser, loginUser, logout, deleteUser, addFile, deleteFile
 }

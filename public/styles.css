@@ -44,6 +44,24 @@ a:hover {
 
 }
 
+.save-file-btn{
+  background-color: #343f56;
+}
+
+.files{
+
+}
+
+.delete-file-btn{
+  font-size: larger;
+  float: right;
+}
+
+.card-title:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .bottom{
   background-color: #151B54;
   height: 20px;
