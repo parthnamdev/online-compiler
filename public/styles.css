@@ -31,6 +31,11 @@ a:hover {
 .heading a{
   color: #fff;
 }
+.sub-head{
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
 
 .top-pic{
   margin: 20px;
@@ -40,17 +45,11 @@ a:hover {
   position: relative;
 }
 
-.main-text{
-
-}
-
 .save-file-btn{
   background-color: #343f56;
+  color: white;
 }
 
-.files{
-
-}
 
 .delete-file-btn{
   font-size: larger;
@@ -74,4 +73,30 @@ a:hover {
 .dropdown button {
   float: right;
   background-color: #343f56;
+}
+
+/*Login Sign up forms*/
+.btn-link{
+  text-decoration: none;
+}
+.btn-link:hover{
+  text-decoration: underline;
+}
+
+.form-control-l{
+  width: 500px;
+  max-width: 100%;
+  margin: 1rem auto;
+  float: none;
+}
+.submit{
+  min-width: 100px;
+}
+
+/*Media queries*/
+@media (max-width: 576px) {
+  .container{
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 }
