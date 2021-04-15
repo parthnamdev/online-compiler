@@ -187,7 +187,7 @@
               var textarea = document.querySelector("form textarea[name=" + name + "]");
               // create ace editor 
               var editor = ace.edit();
-              editor.setTheme("ace/theme/monokai");
+              editor.setTheme("ace/theme/dracula");
               editor.session.setMode("ace/mode/c_cpp");
               editor.container.style.height = "500px";
               editor.session.setValue(textarea.value);

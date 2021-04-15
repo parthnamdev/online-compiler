@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 
@@ -42,7 +43,23 @@ app.use('/', mainRouter);
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log("Server is running on PORT " + port +"...")
+    
+    fs.readdir('./', (err, files) => {
+        files.forEach(file => {
+
+            let ext = path.extname(file).substr(1);
+            if(ext == 'cpp' || ext == 'c' || ext == 'java' || ext == 'class' || ext == 'exe') {
+
+                fs.unlink(file, (errr) => {
+                    if(errr) {
+                        console.log(errr);
+                    }
+                })
+            }
+        });
+      })
+    
+    console.log("Server is running on PORT " + port +"...");
 });
 
 app.get('*', (req, res) => {
