@@ -17,15 +17,14 @@ a:hover {
 
 .top {
   background-color: #343f56;
-  padding: 1rem 10%;
+  padding: 4% 10% 1%;
 }
 .container{
-  padding-left: 10%;
-  padding-right: 10%;
+  margin: 7% 13%;
 }
 
 .heading{
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 500;
 }
 .heading a{
@@ -38,11 +37,15 @@ a:hover {
 }
 
 .top-pic{
-  margin: 20px;
+  margin: 1vw;
   float: right;
-  height: 100px;
-  width: 100px;
+  height: 6vw;
+  width: 6vw;
   position: relative;
+}
+
+.dropdown-toggle{
+  margin: auto 12%;
 }
 
 .save-file-btn{
@@ -62,8 +65,8 @@ a:hover {
 }
 
 .bottom{
+  padding: 2% 13%;
   background-color: #151B54;
-  height: 20px;
 }
 
 .bottom-text{
@@ -83,20 +86,29 @@ a:hover {
   text-decoration: underline;
 }
 
-.form-control-l{
-  width: 500px;
-  max-width: 100%;
-  margin: 1rem auto;
-  float: none;
-}
-.submit{
-  min-width: 100px;
+.not-found {
+  text-align: center;
 }
 
 /*Media queries*/
+@media (max-width: 768px) {
+  .heading{
+    font-size: 2.5rem;
+  }
+  
+}
+
 @media (max-width: 576px) {
-  .container{
-    padding-left: 5%;
-    padding-right: 5%;
+  .heading{
+    font-size: 1.5rem;
+  }
+
+  .top {
+    padding: 5% 10%;
+  }
+
+  .dropdown-toggle{
+    float: none !important;
+    width: 80%;
   }
 }

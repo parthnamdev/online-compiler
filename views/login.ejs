@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Compiler</title>
 
   <!-- bootstrap -->
@@ -36,10 +38,10 @@
 
     </div>
   </div>
-  <div class="container mt-5">
+  <div class="container mt-5 mx-auto">
     <% if(alertMsg.length > 0){ %>
 
-      <div class="alert alert-light alert-dismissible fade show col-lg-6 col-md-8 colo-sm-10 mx-auto" role="alert">
+      <div class="alert alert-light alert-dismissible fade show col-lg-5 col-md-8 col-sm-10 col-9 mx-auto" role="alert">
         <strong>Alert: </strong> <%= alertMsg %>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
@@ -47,11 +49,11 @@
       <% } %>
       <h2 class="sub-head">Enter your details</h2>
 
-      <form action="/login" method="POST" class="mt-5">
-        <input type="text" name="username" class="form-control-l form-control" placeholder="Username">
-        <input type="password" name="password" class="form-control-l form-control" placeholder="Password">
+      <form action="/login" method="POST" class="mt-5 col-lg-5 col-md-8 col-sm-10 col-9 mx-auto">
+        <input type="text" name="username" class="form-control-l form-control mb-3" placeholder="Username" required autofocus spellcheck="false">
+        <input type="password" name="password" class="form-control-l form-control mb-3" placeholder="Password" required>
         <div class="text-center">
-          <button class="btn btn-success submit" type="submit">Login</button>
+          <button class="btn btn-success submit col-sm-2 col-4" type="submit">Login</button>
         </div>
         
       </form>
@@ -62,7 +64,7 @@
   
 
   </div>
-
+  
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
