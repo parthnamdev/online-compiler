@@ -18,8 +18,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser(process.env.SESSION_SECRET));
 
 // database
-const uri = `${"mongodb+srv://"+process.env.ATLAS_USER+":"+process.env.ATLAS_PASSWORD+"@"+process.env.ATLAS_CLUSTER+".fzmhp.mongodb.net/"+process.env.ATLAS_DB_NAME+"?retryWrites=true&w=majority"}`;
-// const uri = 'mongodb://localhost:27017/compilerDB';
+// const uri = `${"mongodb+srv://"+process.env.ATLAS_USER+":"+process.env.ATLAS_PASSWORD+"@"+process.env.ATLAS_CLUSTER+".fzmhp.mongodb.net/"+process.env.ATLAS_DB_NAME+"?retryWrites=true&w=majority"}`;
+const uri = 'mongodb://localhost:27017/compilerDB';
 mongoose.connect(uri, { useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex: true, useFindAndModify: false });
 const db = mongoose.connection;
 
