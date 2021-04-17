@@ -1,93 +1,73 @@
-const express= require('express')
-const fs= require('fs');
-const compcpp=require('./compcpp');
-const compc=require('./compc');
-const compjava=require('./compjava');
-// const bodyparser=require('body-parser');
-//var input='';
-//var status='';
+require('dotenv').config();
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+
+const mainRouter = require('./routes/mainRouter');
+
 //express app
-const app=express();
+const app = express();
+
 //ejs view engines
 app.set('view engine','ejs');
+
 //middleware and static files
 app.use(express.urlencoded({extended: true}));
-app.listen(process.env.PORT || 3000,
-    () => console.log("Server is running..."));
+app.use(cookieParser(process.env.SESSION_SECRET));
+
+// database
+const uri = `${"mongodb+srv://"+process.env.ATLAS_USER+":"+process.env.ATLAS_PASSWORD+"@"+process.env.ATLAS_CLUSTER+".fzmhp.mongodb.net/"+process.env.ATLAS_DB_NAME+"?retryWrites=true&w=majority"}`;
+// const uri = 'mongodb://localhost:27017/compilerDB';
+mongoose.connect(uri, { useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex: true, useFindAndModify: false });
+const db = mongoose.connection;
+
+db.on("error", (err) => {
+    console.log(err);
+});
+
+db.once("open", () => {
+    console.log("database connected");
+});
+
 //webpage display and load
-app.use(express.static('views'));
+app.use('/',express.static(__dirname + '/public'));
 // app.use(bodyparser.urlencoded({extended:true}));
-app.get('/',(req,res)=>{
-   res.redirect('/webpages');
-});
-app.get('/webpages',(req,res)=>{
-    //console.log(str,output);
-    var str='';
-var output='default-output';
-    res.render('webpages',{precode:str, outputcode:output});
-})
-app.get('/nextpage',(req,res)=>{
-    res.render('nextpage') ;
-});
-var inp;
-app.post('/',(req,res)=>{
-    var str= req.body.code;
-    inp=req.body.input;
-    lang=req.body.selector;
+
+
+// main router
+app.use('/', mainRouter);
+
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
     
-    if(lang==1)
-    {
-        fs.writeFile('./code.c',str,(err)=>{
-            if(err)
-            throw(err);
-            var status=compc.compile();
-            if(!status)
-            output=compc.execute(inp);
-            else
-            output=status;
-            console.log("Console output:");
-            console.log(output);
-            res.render('webpages',{precode:str, outputcode:output});
-        res.end();
+    fs.readdir('./', (err, files) => {
+        files.forEach(file => {
+
+            let ext = path.extname(file).substr(1);
+            if(ext == 'cpp' || ext == 'c' || ext == 'java' || ext == 'class' || ext == 'exe') {
+
+                fs.unlink(file, (errr) => {
+                    if(errr) {
+                        console.log(errr);
+                    }
+                })
+            }
         });
-    }
-    else if(lang==2)
-    {
-        fs.writeFile('./code.cpp',str,(err)=>{
-            if(err)
-            throw(err);
-            var status=compcpp.compile();
-            if(!status)
-            output=compcpp.execute(inp);
-            else
-            output=status;
-            console.log("Console output:");
-            console.log(output);
-            res.render('webpages',{precode:str, outputcode:output});
-        res.end();
-        });
-    }
-    else if(lang==3)
-    {
-        fs.writeFile('./main.java',str,(err)=>{
-            if(err)
-            throw(err);
-            var status=compjava.compile();
-            if(!status)
-            output=compjava.execute(inp);
-            else
-            output=status;
-            //console.log("Console output:");
-            //console.log(output);
-            res.render('webpages',{precode:str, outputcode:output});
-        res.end();
-        });
-    }
+      })
     
-    
-    //console.log(output);
-    
+    console.log("Server is running on PORT " + port +"...");
 });
-  app.use((req,res)=>{
+
+app.get('*', (req, res) => {
     res.status(404).render('404');
 });
+app.post('*', (req, res) => {
+    res.status(404).render('404');
+});
+// app.use((req, res) => {
+//     res.status(404).render('404');
+// });

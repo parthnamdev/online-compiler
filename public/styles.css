@@ -1,0 +1,114 @@
+body{
+  font-family: 'Satoshi', sans-serif;
+}
+.body-modification {
+  
+}
+
+a {
+  text-decoration: none;
+  color : #95B9C7;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.top {
+  background-color: #343f56;
+  padding: 4% 10% 1%;
+}
+.container{
+  margin: 7% 13%;
+}
+
+.heading{
+  font-size: 3.5rem;
+  font-weight: 500;
+}
+.heading a{
+  color: #fff;
+}
+.sub-head{
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.top-pic{
+  margin: 1vw;
+  float: right;
+  height: 6vw;
+  width: 6vw;
+  position: relative;
+}
+
+.dropdown-toggle{
+  margin: auto 12%;
+}
+
+.save-file-btn{
+  background-color: #343f56;
+  color: white;
+}
+
+
+.delete-file-btn{
+  font-size: larger;
+  float: right;
+}
+
+.card-title:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.bottom{
+  padding: 2% 13%;
+  background-color: #151B54;
+}
+
+.bottom-text{
+  margin: auto;
+}
+
+.dropdown button {
+  float: right;
+  background-color: #343f56;
+}
+
+/*Login Sign up forms*/
+.btn-link{
+  text-decoration: none;
+}
+.btn-link:hover{
+  text-decoration: underline;
+}
+
+.not-found {
+  text-align: center;
+}
+
+/*Media queries*/
+@media (max-width: 768px) {
+  .heading{
+    font-size: 2.5rem;
+  }
+  
+}
+
+@media (max-width: 576px) {
+  .heading{
+    font-size: 1.5rem;
+  }
+
+  .top {
+    padding: 5% 10%;
+  }
+
+  .dropdown-toggle{
+    float: none !important;
+    width: 80%;
+  }
+}
