@@ -13,7 +13,7 @@ var execute = (input) => {
     var s=new Readable();
     s.push(input);
     s.push(null);
-    const cp2= spawnSync('code.exe', [], {input:input});
+    const cp2= spawnSync('./code.exe', [], {input:input});
     return(cp2.stdout.toString());
     //console.log('function log:',cp2.stdout.toString());
 
